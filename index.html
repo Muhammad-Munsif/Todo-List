@@ -1,101 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fruit To-Do List</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
-      *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  text-align: center;
-  padding: 20px;
-}
 
-.container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  margin: auto;
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fruit To-Do List</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-h2 {
-  color: #333;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 20px;
+    }
 
-input {
-  width: 70%;
-  padding: 8px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      margin: auto;
+    }
 
-button {
-  padding: 8px 12px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    h2 {
+      color: #333;
+    }
 
-button:hover {
-  background-color: #218838;
-}
+    input {
+      width: 70%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+    button {
+      padding: 8px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-li {
-  background: #fff;
-  padding: 10px;
-  margin: 5px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
+    button:hover {
+      background-color: #218838;
+    }
 
-.completed {
-  text-decoration: line-through;
-  color: gray;
-}
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
 
-.delete {
-  background-color: #dc3545;
-  border: none;
-  padding: 5px 10px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    li {
+      background: #fff;
+      padding: 10px;
+      margin: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
-.delete:hover {
-  background-color: #c82333;
-}
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
 
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h2>Fruit To-Do List</h2>
-      <input type="text" id="fruitInput" placeholder="Enter fruit name..." />
-      <button onclick="addFruit()">Add</button>
-      <ul id="fruitList"></ul>
-    </div>
+    .delete {
+      background-color: #dc3545;
+      border: none;
+      padding: 5px 10px;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-    <script src="js/script.js"></script>
-  </body>
+    .delete:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Fruit To-Do List</h2>
+    <input type="text" id="fruitInput" placeholder="Enter fruit name..." />
+    <button onclick="addFruit()">Add</button>
+    <ul id="fruitList"></ul>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
 </html>
