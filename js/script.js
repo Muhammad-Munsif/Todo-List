@@ -1,4 +1,4 @@
-    <script>
+    
         // Fruit data structure
         let fruits = JSON.parse(localStorage.getItem('fruits')) || [];
         let fruitIcons = {
@@ -229,4 +229,4 @@
                 }, index * 100);
             });
         }
-    </script>
+    
