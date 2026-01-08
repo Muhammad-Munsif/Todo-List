@@ -1,82 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fruit To-Do List | Fresh Organizer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fruit To-Do List | Fresh Organizer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="fruit-container">
-        <!-- Header -->
-        <div class="header">
-            <h1><i class="fas fa-apple-alt"></i> Fruit To-Do List</h1>
-            <p>Stay fresh & organized with your favorite fruits</p>
-            
-            <!-- Stats -->
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" id="total-fruits">0</span>
-                    <span class="stat-label">Total</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="completed-fruits">0</span>
-                    <span class="stat-label">Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="pending-fruits">0</span>
-                    <span class="stat-label">Pending</span>
-                </div>
-            </div>
-        </div>
+  <div class="fruit-container">
+    <!-- Header -->
+    <div class="header">
+      <h1><i class="fas fa-apple-alt"></i> Fruit To-Do List</h1>
+      <p>Stay fresh & organized with your favorite fruits</p>
 
-        <!-- Input Section -->
-        <div class="input-section">
-            <div class="input-wrapper">
-                <input type="text" 
-                       id="fruitInput" 
-                       class="fruit-input" 
-                       placeholder="🍎 Add a fruit to your list..."
-                       onkeypress="handleKeyPress(event)" />
-                <button class="add-btn" onclick="addFruit()">
-                    <i class="fas fa-plus"></i> Add
-                </button>
-            </div>
-            
-            <!-- Quick Suggestions -->
-            <div class="suggestions">
-                <div class="suggestion" onclick="addQuickFruit('Apple')">🍎 Apple</div>
-                <div class="suggestion" onclick="addQuickFruit('Banana')">🍌 Banana</div>
-                <div class="suggestion" onclick="addQuickFruit('Orange')">🍊 Orange</div>
-                <div class="suggestion" onclick="addQuickFruit('Grapes')">🍇 Grapes</div>
-                <div class="suggestion" onclick="addQuickFruit('Strawberry')">🍓 Strawberry</div>
-            </div>
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number" id="total-fruits">0</span>
+          <span class="stat-label">Total</span>
         </div>
-
-        <!-- Fruit List -->
-        <div class="list-section">
-            <ul class="fruit-list" id="fruitList">
-                <!-- Fruit items will be added here -->
-                <div class="empty-state" id="emptyState">
-                    <i class="fas fa-lemon"></i>
-                    <p>Your fruit list is empty!</p>
-                    <p class="hint">Add some fruits to get started</p>
-                </div>
-            </ul>
+        <div class="stat-item">
+          <span class="stat-number" id="completed-fruits">0</span>
+          <span class="stat-label">Completed</span>
         </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p><i class="fas fa-leaf"></i> Fresh fruits, fresh start • Made with ❤️</p>
+        <div class="stat-item">
+          <span class="stat-number" id="pending-fruits">0</span>
+          <span class="stat-label">Pending</span>
         </div>
+      </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
+    <!-- Input Section -->
+    <div class="input-section">
+      <div class="input-wrapper">
+        <input type="text" id="fruitInput" class="fruit-input" placeholder="🍎 Add a fruit to your list..."
+          onkeypress="handleKeyPress(event)" />
+        <button class="add-btn" onclick="addFruit()">
+          <i class="fas fa-plus"></i> Add
+        </button>
+      </div>
 
-    
+      <!-- Quick Suggestions -->
+      <div class="suggestions">
+        <div class="suggestion" onclick="addQuickFruit('Apple')">🍎 Apple</div>
+        <div class="suggestion" onclick="addQuickFruit('Banana')">🍌 Banana</div>
+        <div class="suggestion" onclick="addQuickFruit('Orange')">🍊 Orange</div>
+        <div class="suggestion" onclick="addQuickFruit('Grapes')">🍇 Grapes</div>
+        <div class="suggestion" onclick="addQuickFruit('Strawberry')">🍓 Strawberry</div>
+      </div>
+    </div>
+
+    <!-- Fruit List -->
+    <div class="list-section">
+      <ul class="fruit-list" id="fruitList">
+        <!-- Fruit items will be added here -->
+        <div class="empty-state" id="emptyState">
+          <i class="fas fa-lemon"></i>
+          <p>Your fruit list is empty!</p>
+          <p class="hint">Add some fruits to get started</p>
+        </div>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p><i class="fas fa-leaf"></i> Fresh fruits, fresh start • Made with ❤️</p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+
 </body>
+
 </html>
