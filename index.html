@@ -1,83 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fruit To-Do List | Fresh Organizer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Fruit To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .input-section {
+            padding: 25px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        #fruitInput {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        #fruitInput:focus {
+            border-color: #4CAF50;
+        }
+
+        #addBtn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #addBtn:hover {
+            background: #45a049;
+        }
+
+        .quick-fruits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quick-fruit {
+            background: white;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .quick-fruit:hover {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .list-section {
+            padding: 25px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        #fruitList {
+            list-style: none;
+        }
+
+        .fruit-item {
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .fruit-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .fruit-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .fruit-checkbox.checked {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .fruit-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .fruit-text {
+            flex: 1;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .fruit-text.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .fruit-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .input-section,
+            .list-section {
+                padding: 20px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            #addBtn {
+                width: 100%;
+                justify-content: center;
+                padding: 15px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .fruit-item {
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .fruit-text {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="fruit-container">
-    <!-- Header -->
-    <div class="header">
-      <h1><i class="fas fa-apple-alt"></i> Fruit To-Do List</h1>
-      <p>Stay fresh & organized with your favorite fruits</p>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-apple-alt"></i> Fruit To-Do List</h1>
+            <p>Keep track of your favorite fruits</p>
+        </div>
 
-      <!-- Stats -->
-      <div class="stats">
-        <div class="stat-item">
-          <span class="stat-number" id="total-fruits">0</span>
-          <span class="stat-label">Total</span>
+        <div class="input-section">
+            <div class="input-group">
+                <input type="text" 
+                       id="fruitInput" 
+                       placeholder="Enter fruit name..."
+                       onkeypress="handleKeyPress(event)">
+                <button id="addBtn" onclick="addFruit()">
+                    <i class="fas fa-plus"></i> Add
+                </button>
+            </div>
+            
+            <div class="quick-fruits">
+                <div class="quick-fruit" onclick="addQuickFruit('Apple')">Apple</div>
+                <div class="quick-fruit" onclick="addQuickFruit('Banana')">Banana</div>
+                <div class="quick-fruit" onclick="addQuickFruit('Orange')">Orange</div>
+                <div class="quick-fruit" onclick="addQuickFruit('Grapes')">Grapes</div>
+                <div class="quick-fruit" onclick="addQuickFruit('Strawberry')">Strawberry</div>
+            </div>
         </div>
-        <div class="stat-item">
-          <span class="stat-number" id="completed-fruits">0</span>
-          <span class="stat-label">Completed</span>
+
+        <div class="list-section">
+            <ul id="fruitList">
+                <div class="empty-state" id="emptyState">
+                    <i class="fas fa-lemon"></i>
+                    <h3>No fruits added yet</h3>
+                    <p>Add some fruits to get started!</p>
+                </div>
+            </ul>
         </div>
-        <div class="stat-item">
-          <span class="stat-number" id="pending-fruits">0</span>
-          <span class="stat-label">Pending</span>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="totalCount">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="completedCount">0</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="pendingCount">0</span>
+                <span class="stat-label">Pending</span>
+            </div>
         </div>
-      </div>
     </div>
 
-    <!-- Input Section -->
-    <div class="input-section">
-      <div class="input-wrapper">
-        <input type="text" id="fruitInput" class="fruit-input" placeholder="🍎 Add a fruit to your list..."
-          onkeypress="handleKeyPress(event)" />
-        <button class="add-btn" onclick="addFruit()">
-          <i class="fas fa-plus"></i> Add
-        </button>
-      </div>
+    <script>
+        // Load fruits from localStorage or use default
+        let fruits = JSON.parse(localStorage.getItem('fruits')) || [
+            { id: 1, name: 'Apple', completed: false },
+            { id: 2, name: 'Banana', completed: true },
+            { id: 3, name: 'Orange', completed: false }
+        ];
 
-      <!-- Quick Suggestions -->
-      <div class="suggestions">
-        <div class="suggestion" onclick="addQuickFruit('Apple')">🍎 Apple</div>
-        <div class="suggestion" onclick="addQuickFruit('Banana')">🍌 Banana</div>
-        <div class="suggestion" onclick="addQuickFruit('Orange')">🍊 Orange</div>
-        <div class="suggestion" onclick="addQuickFruit('Grapes')">🍇 Grapes</div>
-        <div class="suggestion" onclick="addQuickFruit('Strawberry')">🍓 Strawberry</div>
-      </div>
-    </div>
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            renderFruits();
+            updateStats();
+        });
 
-    <!-- Fruit List -->
-    <div class="list-section">
-      <ul class="fruit-list" id="fruitList">
-        <!-- Fruit items will be added here -->
-        <div class="empty-state" id="emptyState">
-          <i class="fas fa-lemon"></i>
-          <p>Your fruit list is empty!</p>
-          <p class="hint">Add some fruits to get started</p>
-        </div>
-      </ul>
-    </div>
+        // Add fruit function - FIXED
+        function addFruit() {
+            const input = document.getElementById('fruitInput');
+            const fruitName = input.value.trim();
+            
+            if (!fruitName) {
+                alert('Please enter a fruit name!');
+                return;
+            }
+            
+            const newFruit = {
+                id: Date.now(), // Unique ID
+                name: fruitName,
+                completed: false
+            };
+            
+            fruits.push(newFruit);
+            saveToLocalStorage();
+            renderFruits();
+            updateStats();
+            
+            input.value = '';
+            input.focus();
+        }
 
-    <!-- Footer -->
-    <div class="footer">
-      <p><i class="fas fa-leaf"></i> Fresh fruits, fresh start • Made with ❤️</p>
-    </div>
-  </div>
+        // Add quick fruit
+        function addQuickFruit(fruitName) {
+            document.getElementById('fruitInput').value = fruitName;
+            addFruit();
+        }
 
-  <!-- Toast Notification -->
-  <div class="toast" id="toast"></div>
+        // Handle Enter key
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                addFruit();
+            }
+        }
 
+        // Toggle completion
+        function toggleComplete(fruitId) {
+            const fruit = fruits.find(f => f.id === fruitId);
+            if (fruit) {
+                fruit.completed = !fruit.completed;
+                saveToLocalStorage();
+                renderFruits();
+                updateStats();
+            }
+        }
 
+        // Delete fruit
+        function deleteFruit(fruitId) {
+            if (confirm('Are you sure you want to delete this fruit?')) {
+                fruits = fruits.filter(f => f.id !== fruitId);
+                saveToLocalStorage();
+                renderFruits();
+                updateStats();
+            }
+        }
+
+        // Save to localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('fruits', JSON.stringify(fruits));
+        }
+
+        // Render fruits
+        function renderFruits() {
+            const fruitList = document.getElementById('fruitList');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (fruits.length === 0) {
+                fruitList.innerHTML = '';
+                fruitList.appendChild(emptyState);
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            fruitList.innerHTML = fruits.map(fruit => `
+                <li class="fruit-item">
+                    <div class="fruit-checkbox ${fruit.completed ? 'checked' : ''}" 
+                         onclick="toggleComplete(${fruit.id})"></div>
+                    <span class="fruit-text ${fruit.completed ? 'completed' : ''}">
+                        ${fruit.name}
+                    </span>
+                    <div class="fruit-actions">
+                        <button class="delete-btn" onclick="deleteFruit(${fruit.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </li>
+            `).join('');
+        }
+
+        // Update statistics
+        function updateStats() {
+            const total = fruits.length;
+            const completed = fruits.filter(f => f.completed).length;
+            const pending = total - completed;
+            
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('pendingCount').textContent = pending;
+        }
+    </script>
 </body>
-
 </html>
