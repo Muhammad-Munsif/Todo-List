@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Fruit To-Do List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,8 +13,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,103 +25,168 @@
         .container {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             overflow: hidden;
         }
 
+        /* Header */
         .header {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
         }
 
         .header h1 {
-            font-size: 28px;
+            font-size: 2.2rem;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+        }
+
+        .header h1 i {
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 14px;
+            font-size: 1rem;
         }
 
+        /* Input Section */
         .input-section {
-            padding: 25px;
+            padding: 30px;
             background: #f8f9fa;
-            border-bottom: 1px solid #eaeaea;
         }
 
-        .input-group {
+        .input-wrapper {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         #fruitInput {
             flex: 1;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
+            padding: 18px 20px;
+            border: 2px solid #e1e5eb;
+            border-radius: 12px;
+            font-size: 1rem;
             outline: none;
-            transition: border 0.3s;
+            transition: all 0.3s ease;
+            background: white;
         }
 
         #fruitInput:focus {
-            border-color: #4CAF50;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         #addBtn {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 10px;
-            padding: 0 25px;
-            font-size: 16px;
+            border-radius: 12px;
+            padding: 0 30px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        #addBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        #addBtn:active {
+            transform: translateY(0);
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .quick-action {
+            background: white;
+            border: 2px solid #e1e5eb;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        #addBtn:hover {
-            background: #45a049;
-        }
-
-        .quick-fruits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .quick-fruit {
-            background: white;
-            border: 1px solid #4CAF50;
-            color: #4CAF50;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .quick-fruit:hover {
-            background: #4CAF50;
+        .quick-action:hover {
+            background: #667eea;
             color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
         }
 
+        .quick-action i {
+            font-size: 1.1rem;
+        }
+
+        /* List Section */
         .list-section {
-            padding: 25px;
+            padding: 30px;
             max-height: 400px;
             overflow-y: auto;
+        }
+
+        .list-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .list-section::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .list-section::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .list-section::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
         }
 
         #fruitList {
@@ -130,123 +195,211 @@
 
         .fruit-item {
             background: white;
-            border: 1px solid #eaeaea;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
+            border: 2px solid #f0f0f0;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            transition: all 0.3s;
+            gap: 20px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .fruit-item:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .checkbox-wrapper {
+            position: relative;
+            width: 24px;
+            height: 24px;
         }
 
         .fruit-checkbox {
-            width: 24px;
-            height: 24px;
+            width: 100%;
+            height: 100%;
             border: 2px solid #ddd;
-            border-radius: 50%;
+            border-radius: 6px;
             cursor: pointer;
+            appearance: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .fruit-checkbox:checked {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .fruit-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .fruit-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            font-size: 1.5rem;
+            color: #667eea;
         }
 
-        .fruit-checkbox.checked {
-            background: #4CAF50;
-            border-color: #4CAF50;
-        }
-
-        .fruit-checkbox.checked::after {
-            content: '✓';
-            color: white;
-            font-weight: bold;
-        }
-
-        .fruit-text {
+        .fruit-content {
             flex: 1;
-            font-size: 16px;
-            color: #333;
         }
 
-        .fruit-text.completed {
+        .fruit-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .fruit-name.completed {
             text-decoration: line-through;
+            color: #999;
+        }
+
+        .fruit-date {
+            font-size: 0.85rem;
             color: #888;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .fruit-actions {
             display: flex;
-            gap: 8px;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .delete-btn {
-            background: #ff4444;
-            color: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+        .fruit-item:hover .fruit-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid #f0f0f0;
+            background: white;
+            color: #666;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .delete-btn:hover {
-            background: #cc0000;
+            background: #ff4444;
+            color: white;
+            border-color: #ff4444;
         }
 
+        .edit-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 40px 20px;
-            color: #666;
+            padding: 60px 20px;
+            color: #888;
         }
 
         .empty-state i {
-            font-size: 48px;
-            color: #ddd;
+            font-size: 4rem;
+            color: #e0e0e0;
             margin-bottom: 20px;
+            display: block;
         }
 
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            color: #999;
+        }
+
+        /* Stats */
         .stats {
-            padding: 20px;
+            padding: 25px;
             background: #f8f9fa;
             border-top: 1px solid #eaeaea;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
         .stat-item {
-            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         }
 
         .stat-number {
             display: block;
-            font-size: 24px;
-            font-weight: bold;
-            color: #4CAF50;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
         }
 
         .stat-label {
-            font-size: 14px;
+            font-size: 0.9rem;
             color: #666;
-            margin-top: 5px;
+            font-weight: 500;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 max-width: 100%;
+                border-radius: 15px;
             }
             
             .header {
-                padding: 20px;
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
             }
             
             .input-section,
@@ -254,18 +407,26 @@
                 padding: 20px;
             }
             
-            .input-group {
+            .input-wrapper {
                 flex-direction: column;
             }
             
             #addBtn {
                 width: 100%;
-                justify-content: center;
+                padding: 18px;
+            }
+            
+            .fruit-item {
                 padding: 15px;
+                gap: 15px;
+            }
+            
+            .fruit-actions {
+                opacity: 1;
             }
             
             .stats {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 gap: 15px;
             }
         }
@@ -276,53 +437,77 @@
             }
             
             .header h1 {
-                font-size: 24px;
+                font-size: 1.5rem;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+            
+            .quick-action {
+                justify-content: center;
             }
             
             .fruit-item {
-                padding: 12px;
-                gap: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
             }
             
-            .fruit-text {
-                font-size: 15px;
+            .fruit-content {
+                width: 100%;
+            }
+            
+            .fruit-actions {
+                align-self: flex-end;
+                margin-top: 10px;
             }
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-apple-alt"></i> Fruit To-Do List</h1>
-            <p>Keep track of your favorite fruits</p>
+            <p>Organize your fruits with style</p>
         </div>
 
         <div class="input-section">
-            <div class="input-group">
+            <div class="input-wrapper">
                 <input type="text" 
                        id="fruitInput" 
-                       placeholder="Enter fruit name..."
+                       placeholder="Add a fruit to your list..."
                        onkeypress="handleKeyPress(event)">
-                <button id="addBtn" onclick="addFruit()">
-                    <i class="fas fa-plus"></i> Add
+                <button id="addBtn">
+                    <i class="fas fa-plus"></i> Add Fruit
                 </button>
             </div>
             
-            <div class="quick-fruits">
-                <div class="quick-fruit" onclick="addQuickFruit('Apple')">Apple</div>
-                <div class="quick-fruit" onclick="addQuickFruit('Banana')">Banana</div>
-                <div class="quick-fruit" onclick="addQuickFruit('Orange')">Orange</div>
-                <div class="quick-fruit" onclick="addQuickFruit('Grapes')">Grapes</div>
-                <div class="quick-fruit" onclick="addQuickFruit('Strawberry')">Strawberry</div>
+            <div class="quick-actions">
+                <div class="quick-action" onclick="addQuickFruit('Apple')">
+                    <i class="fas fa-apple-alt"></i> Apple
+                </div>
+                <div class="quick-action" onclick="addQuickFruit('Banana')">
+                    <i class="fas fa-lemon"></i> Banana
+                </div>
+                <div class="quick-action" onclick="addQuickFruit('Orange')">
+                    <i class="fas fa-lemon"></i> Orange
+                </div>
+                <div class="quick-action" onclick="addQuickFruit('Grapes')">
+                    <i class="fas fa-grapes"></i> Grapes
+                </div>
+                <div class="quick-action" onclick="addQuickFruit('Strawberry')">
+                    <i class="fas fa-strawberry"></i> Strawberry
+                </div>
             </div>
         </div>
 
         <div class="list-section">
             <ul id="fruitList">
+                <!-- Fruits will be added here dynamically -->
                 <div class="empty-state" id="emptyState">
-                    <i class="fas fa-lemon"></i>
-                    <h3>No fruits added yet</h3>
+                    <i class="fas fa-seedling"></i>
+                    <h3>No fruits yet</h3>
                     <p>Add some fruits to get started!</p>
                 </div>
             </ul>
@@ -331,7 +516,7 @@
         <div class="stats">
             <div class="stat-item">
                 <span class="stat-number" id="totalCount">0</span>
-                <span class="stat-label">Total</span>
+                <span class="stat-label">Total Fruits</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number" id="completedCount">0</span>
@@ -345,20 +530,50 @@
     </div>
 
     <script>
-        // Load fruits from localStorage or use default
-        let fruits = JSON.parse(localStorage.getItem('fruits')) || [
-            { id: 1, name: 'Apple', completed: false },
-            { id: 2, name: 'Banana', completed: true },
-            { id: 3, name: 'Orange', completed: false }
-        ];
+        // Fruit data structure
+        let fruits = JSON.parse(localStorage.getItem('fruits')) || [];
+        let fruitIcons = {
+            'apple': 'fas fa-apple-alt',
+            'banana': 'fas fa-lemon',
+            'orange': 'fas fa-lemon',
+            'grapes': 'fas fa-grapes',
+            'strawberry': 'fas fa-strawberry',
+            'watermelon': 'fas fa-watermelon',
+            'pineapple': 'fas fa-pineapple',
+            'cherry': 'fas fa-cherry',
+            'peach': 'fas fa-peach',
+            'pear': 'fas fa-pear',
+            'kiwi': 'fas fa-kiwi',
+            'mango': 'fas fa-mango',
+            'avocado': 'fas fa-avocado',
+            'lemon': 'fas fa-lemon',
+            'blueberry': 'fas fa-blueberry',
+            'coconut': 'fas fa-coconut',
+            'default': 'fas fa-fruit'
+        };
 
-        // Initialize the app
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            renderFruits();
-            updateStats();
+            initializeApp();
+            setupEventListeners();
         });
 
-        // Add fruit function - FIXED
+        // Initialize app
+        function initializeApp() {
+            if (fruits.length === 0) {
+                // Add sample fruits
+                addSampleFruits();
+            }
+            renderFruits();
+            updateStats();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('addBtn').addEventListener('click', addFruit);
+        }
+
+        // Add fruit function
         function addFruit() {
             const input = document.getElementById('fruitInput');
             const fruitName = input.value.trim();
@@ -369,9 +584,11 @@
             }
             
             const newFruit = {
-                id: Date.now(), // Unique ID
+                id: Date.now(),
                 name: fruitName,
-                completed: false
+                completed: false,
+                date: new Date().toISOString(),
+                icon: getFruitIcon(fruitName.toLowerCase())
             };
             
             fruits.push(newFruit);
@@ -417,6 +634,41 @@
             }
         }
 
+        // Edit fruit
+        function editFruit(fruitId) {
+            const fruit = fruits.find(f => f.id === fruitId);
+            if (fruit) {
+                const newName = prompt('Edit fruit name:', fruit.name);
+                if (newName && newName.trim() !== '') {
+                    fruit.name = newName.trim();
+                    fruit.icon = getFruitIcon(newName.toLowerCase());
+                    saveToLocalStorage();
+                    renderFruits();
+                }
+            }
+        }
+
+        // Get fruit icon
+        function getFruitIcon(fruitName) {
+            for (const [key, icon] of Object.entries(fruitIcons)) {
+                if (fruitName.includes(key)) {
+                    return icon;
+                }
+            }
+            return fruitIcons.default;
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
         // Save to localStorage
         function saveToLocalStorage() {
             localStorage.setItem('fruits', JSON.stringify(fruits));
@@ -437,14 +689,33 @@
             emptyState.style.display = 'none';
             
             fruitList.innerHTML = fruits.map(fruit => `
-                <li class="fruit-item">
-                    <div class="fruit-checkbox ${fruit.completed ? 'checked' : ''}" 
-                         onclick="toggleComplete(${fruit.id})"></div>
-                    <span class="fruit-text ${fruit.completed ? 'completed' : ''}">
-                        ${fruit.name}
-                    </span>
+                <li class="fruit-item" data-id="${fruit.id}">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" 
+                               class="fruit-checkbox" 
+                               ${fruit.completed ? 'checked' : ''}
+                               onchange="toggleComplete(${fruit.id})">
+                    </div>
+                    
+                    <div class="fruit-icon">
+                        <i class="${fruit.icon}"></i>
+                    </div>
+                    
+                    <div class="fruit-content">
+                        <div class="fruit-name ${fruit.completed ? 'completed' : ''}">
+                            ${fruit.name}
+                        </div>
+                        <div class="fruit-date">
+                            <i class="far fa-calendar"></i>
+                            ${formatDate(fruit.date)}
+                        </div>
+                    </div>
+                    
                     <div class="fruit-actions">
-                        <button class="delete-btn" onclick="deleteFruit(${fruit.id})">
+                        <button class="action-btn edit-btn" onclick="editFruit(${fruit.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteFruit(${fruit.id})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -461,6 +732,33 @@
             document.getElementById('totalCount').textContent = total;
             document.getElementById('completedCount').textContent = completed;
             document.getElementById('pendingCount').textContent = pending;
+        }
+
+        // Add sample fruits
+        function addSampleFruits() {
+            const sampleFruits = [
+                { name: 'Apple', completed: false },
+                { name: 'Banana', completed: true },
+                { name: 'Orange', completed: false },
+                { name: 'Grapes', completed: false },
+                { name: 'Strawberry', completed: true }
+            ];
+            
+            sampleFruits.forEach((fruit, index) => {
+                setTimeout(() => {
+                    const newFruit = {
+                        id: Date.now() + index,
+                        name: fruit.name,
+                        completed: fruit.completed,
+                        date: new Date().toISOString(),
+                        icon: getFruitIcon(fruit.name.toLowerCase())
+                    };
+                    fruits.push(newFruit);
+                    saveToLocalStorage();
+                    renderFruits();
+                    updateStats();
+                }, index * 100);
+            });
         }
     </script>
 </body>
